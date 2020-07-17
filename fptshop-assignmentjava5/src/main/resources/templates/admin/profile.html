@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="Start your development with a Dashboard for Bootstrap 4.">
+<meta name="author" content="Creative Tim">
+<title>Danh sách</title>
+<!-- Favicon -->
+<link rel="icon" th:href="@{/assets/img/brand/favicon.png}"
+	type="image/png">
+<!-- Fonts -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+<!-- Icons -->
+<link rel="stylesheet" th:href="@{/assets/vendor/nucleo/css/nucleo.css}"
+	type="text/css">
+<link rel="stylesheet"
+	th:href="@{/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css}"
+	type="text/css">
+<!-- Page plugins -->
+<!-- Argon CSS -->
+<link rel="stylesheet" th:href="@{/assets/css/argon.css?v=1.2.0}"
+	type="text/css">
+</head>
+
+<body>
+	<!-- Sidenav -->
+	<nav
+		class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
+		id="sidenav-main" th:replace="fragments/header::header"></nav>
+	<!-- Main content -->
+	<div class="main-content" id="panel">
+		<!-- Topnav -->
+		<nav
+			class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom"
+			th:replace="fragments/navuser::navuser"></nav>
+
+		<!-- Header -->
+		<!-- Header -->
+		<div class="header pb-6 d-flex align-items-center"
+			style="min-height: 500px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+			<!-- Mask -->
+			<span class="mask bg-gradient-default opacity-8"></span>
+			<!-- Header container -->
+			<div class="container-fluid d-flex align-items-center">
+				<div class="row">
+					<div class="col-lg-7 col-md-10">
+						<h1 class="display-2 text-white">Hello Jesse</h1>
+						<p class="text-white mt-0 mb-5">This is your profile page. You
+							can see the progress you've made with your work and manage your
+							projects or assigned tasks</p>
+						<a href="#!" class="btn btn-neutral">Edit profile</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Page content -->
+		<div class="container-fluid mt--6">
+			<div class="row">
+				<div class="col-xl-4 order-xl-2" th:replace="fragments/navuser::imageprofile">
+				
+				</div>
+			
+				<div class="col-xl-8 order-xl-1">
+					<div class="card">
+						<div class="card-header">
+							<div class="row align-items-center">
+								<div class="col-8">
+									<h3 class="mb-0">Thay đổi thông tin</h3>
+								</div>
+								<!-- <div class="col-4 text-right">
+									<a th:href="@{/users/saveOrUpdate}" class="btn btn-sm btn-primary">Lưu</a>
+								</div> -->
+								 <div class="col-4 text-right" th:if="${message !=null}">
+									<h5 class="disabled text-success" th:text="${message}"></h5>
+								</div> 
+							</div>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/users/profile}" method="post"
+							th:object="${user}">
+								<h6 class="heading-small text-muted mb-4">Thông tin người dùng</h6>
+								<div class="pl-lg-4">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-username">Username</label>
+												<input type="text" id="input-username"  class="form-control"
+													placeholder="Username" th:field="*{username}">
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-email">Họ và tên:</label> 
+												<input type="text" id="input-email"
+													class="form-control" th:field="*{fullname}" >
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								<div class="col-7 text-right">
+									<button type="submit" class="btn btn-sm btn-primary">Lưu thông tin</button> 
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Footer -->
+			<footer class="footer pt-0" th:replace="fragments/footer::footer">
+			</footer>
+		</div>
+	</div>
+	<!-- Argon Scripts -->
+	<!-- Core -->
+
+	<script th:src="@{/assets/vendor/jquery/dist/jquery.min.js}"></script>
+	<script
+		th:src="@{/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/assets/vendor/js-cookie/js.cookie.js}"></script>
+	<script
+		th:src="@{/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js}"></script>
+	<script
+		th:src="@{/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js}"></script>
+	<!-- Optional JS -->
+	<script th:src="@{/assets/vendor/chart.js/dist/Chart.min.js}"></script>
+	<script th:src="@{/assets/vendor/chart.js/dist/Chart.extension.js}"></script>
+	<!-- Argon JS -->
+	<script th:src="@{/assets/js/argon.js?v=1.2.0}"></script>
+</body>
+
+</html>

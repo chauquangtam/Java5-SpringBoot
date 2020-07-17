@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{index.html}" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="Start your development with a Dashboard for Bootstrap 4.">
+<meta name="author" content="Creative Tim">
+<title>Thêm phòng ban</title>
+<!-- Favicon -->
+<link rel="icon" th:href="@{/assets/img/brand/favicon.png}"
+	type="image/png">
+<!-- Fonts -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+<!-- Icons -->
+<link rel="stylesheet" th:href="@{/assets/vendor/nucleo/css/nucleo.css}"
+	type="text/css">
+<link rel="stylesheet"
+	th:href="@{/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css}"
+	type="text/css">
+<!-- Page plugins -->
+<!-- Argon CSS -->
+<link rel="stylesheet" th:href="@{/assets/css/argon.css?v=1.2.0}"
+	type="text/css">
+</head>
+<body>
+	<div class="header bg-primary pb-6" layout:fragment="topic">
+		<div class="container-fluid">
+			<div class="header-body">
+				<div class="row align-items-center py-4">
+					<div class="col-lg-6 col-7">
+						<!-- 				ml-md-4 -->
+						<nav aria-label="breadcrumb" class="d-none d-md-inline-block ">
+							<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+								<li class="breadcrumb-item"><a href="#"><i
+										class="fas fa-home"></i></a></li>
+								<li class="breadcrumb-item"><a th:href="@{/records/list}">Thành
+										tích/kỷ luật</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Ghi
+									nhận thành tích/kỷ luật</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="col-lg-6 col-5 text-right">
+						<a th:href="@{/records/add}" class="btn btn-sm btn-neutral">Thêm
+							mới</a> <a th:href="@{/records/list}" class="btn btn-sm btn-neutral">Tải
+							lại danh sách</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- Page content -->
+	<div class="container-fluid mt--6" layout:fragment="content">
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<!-- Card header -->
+					<div class="card-header border-0">
+						<div class="row align-items-center">
+							<div class="col-lg-6 col-7">
+								<div class="row">
+									<h3 class="mt-2 mx-sm-3">Ghi nhận thành tích/kỷ luật</h3>
+								</div>
+							</div>
+							<div class="col-lg-6 col-5 text-right">
+								<div th:if="${message !=null}">
+									<a href="#"
+										class="btn btn-round btn-white disabled text-success"
+										th:text="${message}"></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- Light table -->
+					<div class="card-body">
+						<form th:action="@{/records/saveOrUpdate}" method="post"
+							th:object="${record}">
+							<h6 class="heading-small text-muted mb-4">Điền đầy đủ thông
+								tin</h6>
+							<div class="pl-lg-4">
+								<div class="row" th:if="${id>0}">
+									<div class="col-lg-6 offset-sm-3">
+										<div class="form-group mb-3">
+											<label class="form-control-label" for="input-email">Mã
+												thành tích/kỷ luật:</label>
+											<div
+												class="input-group input-group-merge input-group-alternative">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i
+														class="ni ni-email-83"></i></span>
+												</div>
+												<input class="form-control" type="text" th:field="*{id}"
+													readonly>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6 offset-sm-3">
+										<div class="form-group mb-3">
+											<label class="form-control-label" for="input-email">Tên
+												nhân viên:</label>
+											<div
+												class="input-group input-group-merge input-group-alternative">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i
+														class="ni ni-email-83"></i></span>
+												</div>
+												 <select class="custom-select" id="inlineFormCustomSelect"
+													th:field="*{staff.id}">
+													<option selected disabled value="">Chọn loại</option>
+													<option th:each="staff : ${staffs} " th:value="${staff.id}"
+														th:text="${staff.name}"></option>
+												</select> 
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6 offset-sm-3">
+										<div class="form-group mb-3">
+											<label class="form-control-label" for="input-email">Loại:</label>
+											<div
+												class="input-group input-group-merge input-group-alternative">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i
+														class="ni ni-email-83"></i></span>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio"
+														name="inlineRadioOptions" th:field="*{type}"
+														id="inlineRadio1" value="1"> <label
+														class="form-check-label" for="inlineRadio1">Thành
+														tích</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio"
+														name="inlineRadioOptions" th:field="*{type}"
+														id="inlineRadio2" value="0"> <label
+														class="form-check-label" for="inlineRadio2">Kỷ
+														luật</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6 offset-sm-3">
+										<div class="form-group mb-3">
+											<label class="form-control-label" for="input-email">Lý
+												do:</label>
+											<div
+												class="input-group input-group-merge input-group-alternative">
+												<div class="input-group-prepend">
+													<span class="input-group-text"><i
+														class="ni ni-email-83"></i></span>
+												</div>
+												<input class="form-control" type="text" th:field="*{reason}"
+													placeholder="Lý do">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary" th:if="${id<=0}">Thêm
+										mới</button>
+									<button type="submit" class="btn btn-primary" th:if="${id>=0}">Cập
+										nhật</button>
+								</div>
+							</div>
+
+						</form>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Footer -->
+			<footer class="footer pt-0" th:replace="fragments/footer::footer">
+			</footer>
+	</div>
+	<script th:src="@{/assets/vendor/jquery/dist/jquery.min.js}"></script>
+	<script
+		th:src="@{/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/assets/vendor/js-cookie/js.cookie.js}"></script>
+	<script
+		th:src="@{/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js}"></script>
+	<script
+		th:src="@{/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js}"></script>
+	<!-- Optional JS -->
+	<script th:src="@{/assets/vendor/chart.js/dist/Chart.min.js}"></script>
+	<script th:src="@{/assets/vendor/chart.js/dist/Chart.extension.js}"></script>
+	<!-- Argon JS -->
+	<script th:src="@{/assets/js/argon.js?v=1.2.0}"></script>
+</body>
+</html>
