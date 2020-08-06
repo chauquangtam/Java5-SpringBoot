@@ -99,7 +99,6 @@ public class RecordController {
 		String message = "";
 		if (type != null && type == 1 || type == 0) {
 			if (list != null && list.size() > 0) {
-				System.out.println(list);
 				message = "Kết quả";
 				model.addAttribute("records", list);
 				model.addAttribute("message", message);
@@ -110,7 +109,6 @@ public class RecordController {
 				model.addAttribute("message", message);
 			}
 		} else {
-			System.out.println("loại : "+type);
 			model.addAttribute("records", recordService.findAll());
 		}
 
